@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState } from 'react';
 // forms
 import { useFormik } from 'formik';
 import taskSchema from './FormSchemas/taskSchema';
-import axios from 'axios';
+import { tasksFormSubmit } from '../../tasksAPI/tasksAxiosAPI';
 // Bootstrap & styles
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -22,14 +22,8 @@ const CreateTaskForm = () => {
    * Other functions for the form logic
    */
   const onSubmit = async (values, actions) => {
-    const url = 'http://localhost:3010/task';
-    try {
-      const response = await axios.post(url, values);
-      // console.dir(response.data);
-      setSuccessMessage('Task added!');
-    } catch (err) {
-      console.error(`${err} from axios task add/post`);
-    }
+    const msg = tasksFormSubmit(values);
+    setSuccessMessage(msg);
     actions.resetForm();
   };
 
