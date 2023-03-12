@@ -10,7 +10,8 @@ const Profile = () => {
   const allUsers = getAllUsers();
   if (!(allUsers.find(userContext.name) || allUsers.find(userContext.email)) ) {
     // not in MongoDB collection
-    const values = {userName: userContext.name};
+    const userName = userContext.name || userContext.email;
+    const values = {userName: userName};
     const resultDB = addNewUser(values);
     console.log(resultDB);
   }
