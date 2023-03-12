@@ -1,10 +1,11 @@
-import TasksNavBar from "../components/auth/TasksNavBar";
+import TasksNavBar from '../components/auth/TasksNavBar';
+import CreateTaskForm from '../components/tasks/CreateTaskForm'
 
 const CreateTask = () => {
   return (
     <div>
       <TasksNavBar />
-      Create Task
+      <CreateTaskForm />
     </div>
   );
 };

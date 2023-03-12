@@ -1,14 +1,15 @@
 import React from 'react';
 import { UserContext } from '../../contexts/UserContext';
+// styles
+import './Profile.css';
 
 const Profile = () => {
   const user = React.useContext(UserContext);
 
   return (
-
-      <div>
+      <div id='profile-navbar'>
+        <p>{user.name}</p>
         <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
       </div>
   );
 };
