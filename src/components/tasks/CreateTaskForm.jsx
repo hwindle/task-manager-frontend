@@ -23,6 +23,7 @@ const CreateTaskForm = () => {
    */
   const onSubmit = async (values, actions) => {
     const url = 'http://localhost:3010/task';
+    console.dir(errors);
     try {
       const response = await axios.post(url, values);
       // console.dir(response.data);
@@ -37,11 +38,11 @@ const CreateTaskForm = () => {
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: {
       taskName: '',
-      dueDate: '',
-      status: '',
+      dueDate: currentDate,
+      status: 'not started',
       description: '',
       priorityLevel: 5,
-      assignedUser: '',
+      assignedUser: 'me',
     },
     validationSchema: taskSchema,
     onSubmit,
@@ -49,6 +50,9 @@ const CreateTaskForm = () => {
 
   return (
     <section>
+      <h3 style={{textAlign: 'center', lineHeight: 3}}>
+        Add a Task
+      </h3>
       <Form
         className='d-flex justify-content-center align-items-center flex-column'
         onSubmit={handleSubmit}>
@@ -77,7 +81,8 @@ const CreateTaskForm = () => {
             <Form.Control
               type='date'
               name='dueDate'
-              defaultValue={currentDate}
+              
+              value={currentDate}
               required
               error={errors?.dueDate}
               onChange={handleChange}
@@ -97,7 +102,7 @@ const CreateTaskForm = () => {
               onBlur={handleBlur}
               defaultValue={'not started'}>
               <option value='not started'>not started</option>
-              <option value='not started'>In progress</option>
+              <option value='In progress'>In progress</option>
             </Form.Select>
           </Col>
         </Form.Group>
@@ -161,8 +166,9 @@ const CreateTaskForm = () => {
           </Button>
         </div>
       </Form>
+      
       {successMessage ? (
-        <Alert variant={'success'}>{successMessage}</Alert>
+        <Alert style={{width: '75%', margin: '2rem auto'}} variant={'success'}>{successMessage}</Alert>
       ) : (
         ''
       )}
