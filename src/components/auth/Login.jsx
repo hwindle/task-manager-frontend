@@ -5,14 +5,12 @@ const Login = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   // not authenticated - show login btn
   return (
-    !isAuthenticated && (
       <button
         onClick={() =>
           loginWithRedirect()
         }>
         Log In
       </button>
-    )
   );
 };
 
