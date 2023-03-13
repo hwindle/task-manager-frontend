@@ -19,9 +19,11 @@ const TaskContainer = () => {
   const { tasksChange } = React.useContext(TasksChangeContext);
 
   useEffect(() => {
+    (async function () {
     const data = getAllTasks();
-    setTasks(() => data);
-  }, [tasks]);
+    setTasks(data);
+    })();
+  }, [tasksChange]);
   
 
   return (
