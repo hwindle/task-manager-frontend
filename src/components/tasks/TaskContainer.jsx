@@ -14,15 +14,15 @@ import FilteredTasks from './FilteredTasks';
 const TaskContainer = () => {
   const user = React.useContext(UserContext);
   // state
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState({});
   // get read only state value from useContext
   const { tasksChange } = React.useContext(TasksChangeContext);
 
   useEffect(() => {
     const data = getAllTasks();
-    setTasks(data);
-  }, [tasks, tasksChange]);
-  const userTasks = tasks.filter(task => task.assignedUser === user.name);
+    setTasks(() => data);
+  }, [tasks]);
+  
 
   return (
     <Tabs
@@ -30,11 +30,11 @@ const TaskContainer = () => {
       id="uncontrolled-tab-example"
       className="mb-3"
     >
-      <Tab eventKey="all" title="Home">
+      <Tab eventKey="all" title="All">
         <AllTasks tasks={tasks} />
       </Tab>
-      <Tab eventKey="users" title="Profile">
-        <FilteredTasks tasks={userTasks} name={user.name} />
+      <Tab eventKey="users" title="Assigned Tasks">
+        <FilteredTasks tasks={tasks} name={user.name} />
       </Tab>
     </Tabs>
   );

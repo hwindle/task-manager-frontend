@@ -1,0 +1,23 @@
+article.task-card {
+  width: 75%;
+  margin: 1rem auto;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 1px 1px 10px #ccc;
+  padding: 1.5rem;
+}
+
+article.task-card > h4 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+article.task-card span.due-date {
+  font-weight: bold;
+  padding-right: 30px;
+}
+
+article.task-card span.due-date.overdue {
+  color: #df0011;
+}

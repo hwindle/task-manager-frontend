@@ -1,5 +1,20 @@
-function FilteredTasks({tasks, name}) {
+import TaskComponent from './TaskComponent';
 
+function FilteredTasks({ tasks, name }) {
+  let taskArr = [];
+  for (let task in tasks) {
+    if (task.assignedName === name) {
+      taskArr.push(task);
+    }
+  }
+
+  return (
+    <section>
+      {taskArr.map((task, id) => {
+          return <TaskComponent item={task} index={id} />;
+        })}
+    </section>
+  );
 }
 
 export default FilteredTasks;

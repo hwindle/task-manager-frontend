@@ -1,10 +1,11 @@
 import TasksNavBar from "../components/auth/TasksNavBar";
+import TaskContainer from "../components/tasks/TaskContainer";
 
 const MainTaskList = () => {
   return (
     <div>
       <TasksNavBar />
-      List of tasks
+      <TaskContainer />
     </div>
   );
 };

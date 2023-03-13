@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { getAllUsers } from '../../tasksAPI/usersAxiosAPI';
+// context
+import { TasksChangeContext } from '../../contexts/TasksChangeContext';
 
 const updateFormCSS = {
   padding: '1rem',
@@ -10,8 +13,10 @@ const updateFormCSS = {
 };
 
 function UpdateModal(props) {
+  // get the setter for tasksChange
+  const { setTasksChange } = useContext(TasksChangeContext);
   // get all users from db
-  const allUsers = [{ name: 'me', _id: 'G3jh5i6to4' }];
+  const allUsers = getAllUsers();
   
   const updateItemInfo = async (e) => {
     e.preventDefault();
@@ -29,8 +34,10 @@ function UpdateModal(props) {
       `http://localhost:3010/task/${props.itemIndex}`,
       itemData
     );
-    props.close();
     updateItemsArray(results.data);
+    // setting context state
+    setTasksChange(true);
+    props.close();
   };
 
   const updateItemsArray = (data) => {
@@ -96,7 +103,7 @@ function UpdateModal(props) {
             defaultValue={props.itemInfo.assignedUser}
             name='assignedUser'
           >
-            {allUsers.map((user) => {
+            {Object.values(allUsers).map((user) => {
                 return <option value={user._id}>{user.name}</option>;
               })}
             </Form.Select>

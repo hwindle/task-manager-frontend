@@ -15,7 +15,7 @@ const TasksRouter = () => {
   const [tasksChange, setTasksChange] = useState(false);
 
   return (
-    <TasksChangeContext.Provider value={[tasksChange, setTasksChange]}>
+    <TasksChangeContext.Provider value={{tasksChange, setTasksChange}}>
       <Router>
         <Routes>
           {/* This page is always active */}

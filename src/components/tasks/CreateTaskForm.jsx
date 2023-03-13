@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import taskSchema from './FormSchemas/taskSchema';
 import { tasksFormSubmit } from '../../tasksAPI/tasksAxiosAPI';
+import { getAllUsers } from '../../tasksAPI/usersAxiosAPI';
 // Bootstrap & styles
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -13,7 +14,7 @@ import './CreateTaskForm';
 
 const CreateTaskForm = () => {
   // get all users from mongodb
-  const allUsers = [{ name: 'me', _id: 'G3jh5i6to4' }];
+  const allUsers = getAllUsers();
   const currentDate = new Date().toISOString().slice(0, 10);
 
   // flash message at bottom
@@ -144,7 +145,7 @@ const CreateTaskForm = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               defaultValue={'Me'}>
-              {allUsers.map((user) => {
+              {Object.values(allUsers).map((user) => {
                 return <option value={user._id}>{user.name}</option>;
               })}
             </Form.Select>
