@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState } from 'react';
 // forms
 import { useFormik } from 'formik';
 import taskSchema from './FormSchemas/taskSchema';
-import axios from 'axios';
+import { tasksFormSubmit } from '../../tasksAPI/tasksAxiosAPI';
 // Bootstrap & styles
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -22,15 +22,9 @@ const CreateTaskForm = () => {
    * Other functions for the form logic
    */
   const onSubmit = async (values, actions) => {
-    const url = 'http://localhost:3010/task';
-    console.dir(errors);
-    try {
-      const response = await axios.post(url, values);
-      // console.dir(response.data);
-      setSuccessMessage('Task added!');
-    } catch (err) {
-      console.error(`${err} from axios task add/post`);
-    }
+    const msg = tasksFormSubmit(values);
+    setSuccessMessage(msg);
+
     actions.resetForm();
   };
 
@@ -50,9 +44,7 @@ const CreateTaskForm = () => {
 
   return (
     <section>
-      <h3 style={{textAlign: 'center', lineHeight: 3}}>
-        Add a Task
-      </h3>
+      <h3 style={{ textAlign: 'center', lineHeight: 3 }}>Add a Task</h3>
       <Form
         className='d-flex justify-content-center align-items-center flex-column'
         onSubmit={handleSubmit}>
@@ -81,7 +73,6 @@ const CreateTaskForm = () => {
             <Form.Control
               type='date'
               name='dueDate'
-              
               value={currentDate}
               required
               error={errors?.dueDate}
@@ -166,9 +157,13 @@ const CreateTaskForm = () => {
           </Button>
         </div>
       </Form>
-      
+
       {successMessage ? (
-        <Alert style={{width: '75%', margin: '2rem auto'}} variant={'success'}>{successMessage}</Alert>
+        <Alert
+          style={{ width: '75%', margin: '2rem auto' }}
+          variant={'success'}>
+          {successMessage}
+        </Alert>
       ) : (
         ''
       )}
