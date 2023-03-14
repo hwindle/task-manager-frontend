@@ -61,7 +61,7 @@ function UpdateModal(props) {
           />
         </Form.Group>
         <Form.Group controlId='dueDate'>
-          <Form.Label>Brand</Form.Label>
+          <Form.Label>End Date</Form.Label>
           <Form.Control
             defaultValue={props.itemInfo.dueDate}
             type='date'
@@ -109,7 +109,7 @@ function UpdateModal(props) {
             </Form.Select>
         </Form.Group>
         <Button variant='primary' type='submit'>
-          Update Makeup
+          Update
         </Button>
       </Form>
       <Modal.Footer>

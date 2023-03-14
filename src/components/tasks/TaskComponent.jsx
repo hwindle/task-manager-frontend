@@ -27,11 +27,16 @@ const TaskComponent = ({ item, index }) => {
 
   // date stuff
   let dateClasses = 'due-date';
+  let niceDateString = 'no date';
   const today = new Date();
-  if (item.dueDate.getTime() > today.getTime() && item.status !== 'Completed') {
-    dateClasses += ' overdue';
+  if (item.dueDate) {
+    // if (item.dueDate.getTime() > today.getTime() && item.status !== 'Completed') {
+    //   dateClasses += ' overdue';
+    // }
+    // if date is in the data model convert to a nice string
+    //niceDateString = item.dueDate.toLocaleDateString();
   }
-  const niceDateString = item.dueDate.toLocaleDateString();
+  
 
   return (
     <article key={index} className='task-card'>

@@ -14,16 +14,16 @@ import FilteredTasks from './FilteredTasks';
 const TaskContainer = () => {
   const user = React.useContext(UserContext);
   // state
-  const [tasks, setTasks] = useState({});
+  const [tasks, setTasks] = useState([]);
   // get read only state value from useContext
   const { tasksChange } = React.useContext(TasksChangeContext);
 
   useEffect(() => {
     (async function () {
-    const data = getAllTasks();
+    const data = await getAllTasks();
     setTasks(data);
     })();
-  }, [tasksChange]);
+  }, []);
   
 
   return (
