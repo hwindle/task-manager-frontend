@@ -16,7 +16,28 @@ function UpdateModal(props) {
   // get the setter for tasksChange
   const { setTasksChange } = useContext(TasksChangeContext);
   // get all users from db
-  const allUsers = getAllUsers();
+  //const allUsers = getAllUsers();
+  // DB full of records to take out...
+  const allUsers = [
+    {
+      _id: "640f50e376494e072040fa0a"
+      ,
+      userName: "Hazel"
+    },
+    {
+      _id: '640f7d0bf01b2ecae1064143',
+      userName: 'me'
+    },
+    {
+      _id: "640f510976494e072040fa0b",
+      userName: "Paul"
+    },
+    {
+      _id: "640f513776494e072040fa0c"
+      ,
+      userName: "Jay"
+    }
+  ];
   
   const updateItemInfo = async (e) => {
     e.preventDefault();
@@ -34,15 +55,15 @@ function UpdateModal(props) {
       `http://localhost:3010/task/${props.itemIndex}`,
       itemData
     );
-    updateItemsArray(results.data);
+    //updateItemsArray(results.data);
     // setting context state
     setTasksChange(true);
     props.close();
   };
 
-  const updateItemsArray = (data) => {
-    props.updateItemsArray(data);
-  };
+  // const updateItemsArray = (data) => {
+  //   props.updateItemsArray(data);
+  // };
 
   return (
     <Modal show={props.show} onHide={props.close}>
@@ -103,9 +124,7 @@ function UpdateModal(props) {
             defaultValue={props.itemInfo.assignedUser}
             name='assignedUser'
           >
-            {Object.values(allUsers).map((user) => {
-                return <option value={user._id}>{user.name}</option>;
-              })}
+            {allUsers?.map(user => (<option value={user.userName} data-item={user._id}>{user.userName}</option>))}
             </Form.Select>
         </Form.Group>
         <Button variant='primary' type='submit'>

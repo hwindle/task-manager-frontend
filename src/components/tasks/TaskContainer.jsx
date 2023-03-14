@@ -23,7 +23,7 @@ const TaskContainer = () => {
     const data = await getAllTasks();
     setTasks(data);
     })();
-  }, []);
+  }, [tasksChange]);
   
 
   return (

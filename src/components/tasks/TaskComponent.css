@@ -21,3 +21,7 @@ article.task-card span.due-date {
 article.task-card span.due-date.overdue {
   color: #df0011;
 }
+
+.task-name.completed {
+  text-decoration: line-through;
+}
