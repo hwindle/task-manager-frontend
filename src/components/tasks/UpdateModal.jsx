@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -16,28 +16,19 @@ function UpdateModal(props) {
   // get the setter for tasksChange
   const { setTasksChange } = useContext(TasksChangeContext);
   // get all users from db
-  //const allUsers = getAllUsers();
-  // DB full of records to take out...
-  const allUsers = [
-    {
-      _id: "640f50e376494e072040fa0a"
-      ,
-      userName: "Hazel"
-    },
-    {
-      _id: '640f7d0bf01b2ecae1064143',
-      userName: 'me'
-    },
-    {
-      _id: "640f510976494e072040fa0b",
-      userName: "Paul"
-    },
-    {
-      _id: "640f513776494e072040fa0c"
-      ,
-      userName: "Jay"
+  // set state for list of users
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // get all users from mongodb
+    async function usersForSelect() {
+      const result = await getAllUsers();
+      return result;
     }
-  ];
+    const allUsers = usersForSelect();
+    allUsers.then(data => setUsers(data));
+    // console.log('All users', users);
+  }, []);
   
   const updateItemInfo = async (e) => {
     e.preventDefault();
@@ -124,7 +115,7 @@ function UpdateModal(props) {
             defaultValue={props.itemInfo.assignedUser}
             name='assignedUser'
           >
-            {allUsers?.map(user => (<option value={user.userName} data-item={user._id}>{user.userName}</option>))}
+            {users?.map(user => (<option value={user.userName} data-item={user._id}>{user.userName}</option>))}
             </Form.Select>
         </Form.Group>
         <Button variant='primary' type='submit'>

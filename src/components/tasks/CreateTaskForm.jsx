@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // forms
 import { useFormik } from 'formik';
 import taskSchema from './FormSchemas/taskSchema';
 import { tasksFormSubmit } from '../../tasksAPI/tasksAxiosAPI';
-//import { getAllUsers } from '../../tasksAPI/usersAxiosAPI';
+import { getAllUsers } from '../../tasksAPI/usersAxiosAPI';
 // Bootstrap & styles
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -13,34 +13,42 @@ import Alert from 'react-bootstrap/Alert';
 import './CreateTaskForm';
 
 const CreateTaskForm = () => {
-  // get all users from mongodb - Immediately invoked f. expression
-  // async function usersForSelect() {
-  //   const result = await getAllUsers();
-  //   return result;
-  // }
-  // const allUsers = usersForSelect();
-  // DB full of records to take out...
-  const allUsers = [
-    {
-      _id: "640f50e376494e072040fa0a"
-      ,
-      userName: "Hazel"
-    },
-    {
-      _id: '640f7d0bf01b2ecae1064143',
-      userName: 'me'
-    },
-    {
-      _id: "640f510976494e072040fa0b",
-      userName: "Paul"
-    },
-    {
-      _id: "640f513776494e072040fa0c"
-      ,
-      userName: "Jay"
+  // set state for list of users
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // get all users from mongodb
+    async function usersForSelect() {
+      const result = await getAllUsers();
+      return result;
     }
-  ];
-  
+    const allUsers = usersForSelect();
+    allUsers.then(data => setUsers(data));
+    // console.log('All users', users);
+  }, []);
+
+  // DB full of records to take out...
+  // const allUsers = [
+  //   {
+  //     _id: "640f50e376494e072040fa0a"
+  //     ,
+  //     userName: "Hazel"
+  //   },
+  //   {
+  //     _id: '640f7d0bf01b2ecae1064143',
+  //     userName: 'me'
+  //   },
+  //   {
+  //     _id: "640f510976494e072040fa0b",
+  //     userName: "Paul"
+  //   },
+  //   {
+  //     _id: "640f513776494e072040fa0c"
+  //     ,
+  //     userName: "Jay"
+  //   }
+  // ];
+
   const currentDate = new Date().toISOString().slice(0, 10);
 
   // flash message at bottom
@@ -50,8 +58,7 @@ const CreateTaskForm = () => {
    */
   const onSubmit = async (values, actions) => {
     const msg = tasksFormSubmit(values);
-    setSuccessMessage(msg);
-
+    console.log(msg);
     actions.resetForm();
   };
 
@@ -171,7 +178,11 @@ const CreateTaskForm = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               defaultValue={'Me'}>
-              {allUsers?.map(user => (<option value={user.userName} data-item={user._id}>{user.userName}</option>))}
+              {users?.map((user) => (
+                <option value={user.userName} data-item={user._id}>
+                  {user.userName}
+                </option>
+              ))}
             </Form.Select>
           </Col>
         </Form.Group>

@@ -2,8 +2,8 @@ import Login from '../components/auth/Login';
 
 const Landing = () => {
   return (
-    <div>
-      Landing - shown to all users
+    <div className='landing-page'>
+      
       <Login />
     </div>
   );
