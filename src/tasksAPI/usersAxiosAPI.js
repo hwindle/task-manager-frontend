@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const addNewUser = async (values) => {
-  const url = `${process.env.REACT_APP_LOCALHOST}/users`;
+  const url = `${process.env.REACT_APP_PROD_BACKEND}/users`;
   try {
     const response = await axios.post(url, values);
     // console.dir(response.data);
@@ -12,11 +12,11 @@ export const addNewUser = async (values) => {
 };
 
 export const getAllUsers = async () => {
-  const results = await axios.get(`${process.env.REACT_APP_LOCALHOST}/users`);
+  const results = await axios.get(`${process.env.REACT_APP_PROD_BACKEND}/users`);
   return results.data;
 };
 
 export const getOneUser = async (name) => {
-  const result = await axios.get(`${process.env.REACT_APP_LOCALHOST}/searchuser?name=${name}`);
+  const result = await axios.get(`${process.env.REACT_APP_PROD_BACKEND}/searchuser?name=${name}`);
   return result.data;
 };

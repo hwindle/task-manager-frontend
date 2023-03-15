@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const tasksFormSubmit = async (values) => {
-  const url = `${process.env.REACT_APP_LOCALHOST}/task`;
+  const url = `${process.env.REACT_APP_PROD_BACKEND}/task`;
   try {
     const response = await axios.post(url, values);
     // console.dir(response.data);
@@ -14,7 +14,7 @@ export const tasksFormSubmit = async (values) => {
 export const taskUpdateSubmit = async (id, values) => {
   try {
     const updateResponse = await axios.put(
-      `${process.env.REACT_APP_LOCALHOST}/task/${id}`,
+      `${process.env.REACT_APP_PROD_BACKEND}/task/${id}`,
       values
     );
     console.dir(updateResponse.data);
@@ -25,7 +25,7 @@ export const taskUpdateSubmit = async (id, values) => {
 };
 
 export const getAllTasks = async () => {
-  const results = await axios.get(`${process.env.REACT_APP_LOCALHOST}/task`);
+  const results = await axios.get(`${process.env.REACT_APP_PROD_BACKEND}/task`);
   return results.data;
 };
 
@@ -35,7 +35,7 @@ export const deleteTask = async (id) => {
       return;
     }
     try {
-      const deleteUrl = `${process.env.REACT_APP_LOCALHOST}/task/${id}`;
+      const deleteUrl = `${process.env.REACT_APP_PROD_BACKEND}/task/${id}`;
       const deleteResponse = await axios.delete(deleteUrl);
       console.log(deleteResponse.data);
     } catch (err) {
