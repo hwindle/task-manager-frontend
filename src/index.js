@@ -6,7 +6,7 @@ import { Auth0Provider } from '@auth0/auth0-react';
 
 const auth0Domain = process.env.REACT_APP_DOMAIN;
 const auth0ClientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-const redirectPage = `https://precious-froyo-ce7f1b.netlify.app/alltasks`;
+const redirectPage = 'https://precious-froyo-ce7f1b.netlify.app/alltasks';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
