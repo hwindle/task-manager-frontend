@@ -16,25 +16,32 @@ const TaskComponent = ({ item, index }) => {
   // selected tab state
   const [selected, setSelectVal] = useState('#first');
   // declare variables
-  let bVariant;
-  let sVariant;
-  let btext;
-  let stext;
+  let bVariant; // button variant
+  let sVariant; // string variant
+  let btext; // button text
+  let stext; // string text
   let isOwner = true;
   // state variables for update
   const [showUpdateModalStatus, setShowUpdateModalStatus] = useState(false);
 
   // switches for priorities and statuses css classes
   switch (item.priorityLevel) {
-    case 1 - 4:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
       bVariant = 'dark';
       btext = 'Low';
       break;
-    case 5 - 7:
+    case 5:
+    case 6:
+    case 7:
       bVariant = 'secondary';
       btext = 'Medium';
       break;
-    case 8 - 10:
+    case 8:
+    case 9:
+    case 10:
       bVariant = 'primary';
       btext = 'High';
       break;

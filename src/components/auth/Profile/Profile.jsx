@@ -9,7 +9,9 @@ const Profile = () => {
 
   async function insertNewUser() {
     const userName = userContext.name || userContext.email;
-    const result = await getOneUser(userName);
+    // change any spaces into %20 for an url
+    const userEncoded = encodeURI(userName);
+    const result = await getOneUser(userEncoded);
     if (result === []) {
       // if the user is not in the DB
       const values = { userName: userName };

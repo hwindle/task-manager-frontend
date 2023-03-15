@@ -27,28 +27,6 @@ const CreateTaskForm = () => {
     // console.log('All users', users);
   }, []);
 
-  // DB full of records to take out...
-  // const allUsers = [
-  //   {
-  //     _id: "640f50e376494e072040fa0a"
-  //     ,
-  //     userName: "Hazel"
-  //   },
-  //   {
-  //     _id: '640f7d0bf01b2ecae1064143',
-  //     userName: 'me'
-  //   },
-  //   {
-  //     _id: "640f510976494e072040fa0b",
-  //     userName: "Paul"
-  //   },
-  //   {
-  //     _id: "640f513776494e072040fa0c"
-  //     ,
-  //     userName: "Jay"
-  //   }
-  // ];
-
   const currentDate = new Date().toISOString().slice(0, 10);
 
   // flash message at bottom
@@ -108,7 +86,7 @@ const CreateTaskForm = () => {
             <Form.Control
               type='date'
               name='dueDate'
-              value={currentDate}
+              defaultValue={currentDate}
               required
               error={errors?.dueDate}
               onChange={handleChange}
