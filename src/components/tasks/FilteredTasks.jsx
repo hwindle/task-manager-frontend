@@ -1,16 +1,14 @@
 import TaskComponent from './TaskComponent';
 
 function FilteredTasks({ tasks, name }) {
-  // let taskArr = [];
-  // for (let task in tasks) {
-  //   if (task.assignedName === name) {
-  //     taskArr.push(task);
-  //   }
-  // }
+
+  const assignedTasks = tasks.filter(task => task.assignedUser === name); 
+  // console.log('name: ', name);
+  // console.dir(assignedTasks);
 
   return (
     <section>
-      {tasks.map((task, id) => {
+      {assignedTasks.map((task, id) => {
           return <TaskComponent item={task} index={id} />;
         })}
     </section>

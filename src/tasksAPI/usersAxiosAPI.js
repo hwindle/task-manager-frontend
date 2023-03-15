@@ -15,3 +15,8 @@ export const getAllUsers = async () => {
   const results = await axios.get(`${process.env.REACT_APP_LOCALHOST}/users`);
   return results.data;
 };
+
+export const getOneUser = async (name) => {
+  const result = await axios.get(`${process.env.REACT_APP_LOCALHOST}/searchuser?name=${name}`);
+  return result.data;
+};
