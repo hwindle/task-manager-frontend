@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { UserContext } from '../../contexts/UserContext';
-import { getAllUsers, addNewUser } from '../../tasksAPI/usersAxiosAPI';
+import { UserContext } from '../../../contexts/UserContext';
+import { getAllUsers, addNewUser } from '../../../tasksAPI/usersAxiosAPI';
 // styles
 import './Profile.css';
 

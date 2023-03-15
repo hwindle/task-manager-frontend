@@ -4,8 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 import { LinkContainer } from 'react-router-bootstrap';
 //import { Link } from 'react-router-dom';
-import Logout from './Logout';
-import Profile from './Profile';
+import Logout from './Logout/Logout';
+import Profile from './Profile/Profile';
 // icon
 import bpuss from '../../images/bpuss2_icon.png';
 

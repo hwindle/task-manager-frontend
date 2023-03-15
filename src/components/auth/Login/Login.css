@@ -1,0 +1,72 @@
+#loginBtn {
+  background: rgb(44, 53, 59);
+  display: block;
+  font-size: 3rem;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 15px 2px #ccc;
+}
+
+#loginBtn:before {
+  content: '';
+  background: linear-gradient(
+    45deg,
+    #556edb,
+    #5c085f,
+    #002bff,
+    #7a00ff,
+    #ff00c8
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(3px);
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+#loginBtn:active {
+  color: #000;
+}
+
+#loginBtn:active:after {
+  background: transparent;
+}
+
+#loginBtn:hover:before {
+  opacity: 1;
+}
+
+#loginBtn:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

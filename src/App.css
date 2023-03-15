@@ -4,14 +4,6 @@ div.landing-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-size: 100% 100%;
-background-position: 0px 0px;
-background-image: repeating-linear-gradient(102deg, #A100FFFF 0%, #71C4FFFF 70%, #dd0000 100%);
+  background: linear-gradient(132deg, rgb(2, 106, 122) 0.00%, rgb(242, 78, 163) 100.00%);
 }
 
-div.landing-page > button {
-  display: block;
-  font-size: 3rem;
-  padding: 2rem 4rem;
-  border-radius: 15px;
-}
