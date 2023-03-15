@@ -46,6 +46,7 @@ function UpdateModal(props) {
       `${process.env.REACT_APP_PROD_BACKEND}/task/${props.itemIndex}`,
       itemData
     );
+    console.log(results);
     //updateItemsArray(results.data);
     // setting context state
     setTasksChange(true);

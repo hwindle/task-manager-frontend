@@ -4,7 +4,7 @@ export const tasksFormSubmit = async (values) => {
   const url = `${process.env.REACT_APP_PROD_BACKEND}/task`;
   try {
     const response = await axios.post(url, values);
-    // console.dir(response.data);
+    console.dir(response.data);
     return 'Task added!';
   } catch (err) {
     console.error(`${err} from axios task add/post`);
