@@ -57,8 +57,9 @@ const CreateTaskForm = () => {
    * Other functions for the form logic
    */
   const onSubmit = async (values, actions) => {
-    const msg = tasksFormSubmit(values);
-    console.log(msg);
+    const msg = await tasksFormSubmit(values);
+    // console.log(msg);
+    setSuccessMessage(msg);
     actions.resetForm();
   };
 
