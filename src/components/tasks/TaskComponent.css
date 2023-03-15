@@ -1,4 +1,4 @@
-article.task-card {
+.card {
   width: 75%;
   margin: 1rem auto;
   background-color: white;
@@ -7,21 +7,21 @@ article.task-card {
   padding: 1.5rem;
 }
 
-article.task-card > h4 {
+.card > h4 {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
 }
 
-article.task-card span.due-date {
+.card span.due-date {
   font-weight: bold;
   padding-right: 30px;
 }
 
-article.task-card span.due-date.overdue {
+p.card-text > span.due-date.overdue {
   color: #df0011;
 }
 
-.task-name.completed {
+div.task-name.completed.card-title {
   text-decoration: line-through;
 }

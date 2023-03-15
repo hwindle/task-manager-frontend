@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import Stack from 'react-bootstrap/Nav';
 import { deleteTask } from '../../tasksAPI/tasksAxiosAPI';
 import UpdateModal from './UpdateModal';
+// context
+import { TasksChangeContext } from '../../contexts/TasksChangeContext';
+// CSS
+import './TaskComponent.css';
+
 
 const TaskComponent = ({ item, index }) => {
+  // get the setter for tasksChange
+  const { setTasksChange } = useContext(TasksChangeContext);
   // selected tab state
   const [selected, setSelectVal] = useState('#first');
   // declare variables
@@ -67,6 +74,8 @@ const TaskComponent = ({ item, index }) => {
     } catch (err) {
       console.error('Delete failed: ', err);
     }
+    // setting context state
+    setTasksChange(true);
   };
 
   const showUpdateModal = () => {
@@ -79,8 +88,9 @@ const TaskComponent = ({ item, index }) => {
   let dateClasses = 'due-date';
   let niceDateString = 'no date';
   const today = new Date();
+  const unixTimeDueDate = new Date(item.dueDate).getTime();
   if (item.dueDate) {
-    if (item.dueDate > today.getTime() && item.status !== 'Completed') {
+    if (unixTimeDueDate < today.getTime() && item.status !== 'Completed') {
       dateClasses += ' overdue';
       stext = 'Overdue';
     }
@@ -125,9 +135,9 @@ const TaskComponent = ({ item, index }) => {
         <Card.Body id='second'>
           <Card.Title>Assigned Attributes</Card.Title>
           <Card.Text>
-            <h4 className={dateClasses}>Task due: {niceDateString}</h4>
-            <br></br>
-            <h5>Priority: {item?.priorityLevel}</h5>
+            <span className={dateClasses}>Task due: {niceDateString} </span>
+            <br />
+            <span className='priority-text'>Priority: {item?.priorityLevel}</span>
           </Card.Text>
           {/* <Button variant="primary">Go somewhere</Button> */}
         </Card.Body>
