@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const addNewUser = async (values) => {
-  const url = 'http://localhost:3010/users';
+  const url = `${process.env.REACT_APP_LOCALHOST}/users`;
   try {
     const response = await axios.post(url, values);
     // console.dir(response.data);
@@ -12,6 +12,6 @@ export const addNewUser = async (values) => {
 };
 
 export const getAllUsers = async () => {
-  const results = await axios.get('http://localhost:3010/users');
+  const results = await axios.get(`${process.env.REACT_APP_LOCALHOST}/users`);
   return results.data;
 };

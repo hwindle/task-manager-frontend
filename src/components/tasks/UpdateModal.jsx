@@ -43,7 +43,7 @@ function UpdateModal(props) {
 
     console.log('Update data: ', itemData);
     const results = await axios.put(
-      `http://localhost:3010/task/${props.itemIndex}`,
+      `${process.env.REACT_APP_LOCALHOST}/task/${props.itemIndex}`,
       itemData
     );
     //updateItemsArray(results.data);
